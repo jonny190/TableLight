@@ -1,0 +1,43 @@
+Refs,Qty,Value,Description,MPN / example part,Footprint,Notes
+BT1,1,18650,18650 PCB-mount holder,Keystone 1042 (or BH-18650-PC equiv.),BatteryHolder_Keystone_1042_1x18650,
+BT2,1,18650 (optional 2nd cell),18650 PCB-mount holder,Keystone 1042 (or BH-18650-PC equiv.),BatteryHolder_Keystone_1042_1x18650,
+"C1, C2, C10, C12",4,10uF 10V,Capacitor 0805 X5R,,C_0805_2012Metric,
+"C3, C11, C14, C15, C16, C17",6,100nF,Capacitor 0603 X7R,,C_0603_1608Metric,
+"C4, C5, C6, C7",4,22uF 10V,Capacitor 0805 X5R,,C_0805_2012Metric,
+C8,1,100uF 6.3V,Electrolytic / polymer cap SMD 6.3x5.4,,CP_Elec_6.3x5.4,LED rail bulk
+"C9, C13",2,1uF,Capacitor 0603 X7R,,C_0603_1608Metric,EN reset delay
+"D1, D2",2,SS34,Schottky diode SMA,,D_SMA,USB -> VSYS
+D3,1,RED,LED 0603,,LED_0603_1608Metric,CHRG: on while charging
+D4,1,GREEN,LED 0603,,LED_0603_1608Metric,STDBY: on when charge complete
+"H1, H2, H3, H4",4,M3,"M3 mounting hole (r=45 mm, 45/135/225/315 deg)",-,MountingHole_3.2mm_M3,
+J1,1,USB-C 16P,"USB-C receptacle 16 pin, top mount",HRO TYPE-C-31-M-12,USB_C_Receptacle_HRO_TYPE-C-31-M-12,
+J2,1,LED RING,JST PH 2.0 mm 3 pin,B3B-PH-K-S,JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,"1 = VLED (+5V), 2 = GND, 3 = DATA -> LED ring(s) in the head, via the stem"
+J3,1,TOUCH,JST PH 2.0 mm 2 pin,B2B-PH-K-S,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,"1 = pad, 2 = GND (optional shield)"
+J4,1,EXP,Pin header 1x6 2.54 mm (expansion),generic,PinHeader_1x06_P2.54mm_Vertical,"3V3 GND IO25 IO26 IO32 IO33 (IR receiver, extra buttons, sensors)"
+J5,1,BAT ALT,JST PH 2.0 mm 2 pin,B2B-PH-K-S,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,"alternative: wire-lead holder / pouch cell, parallel to BT1/BT2"
+L1,1,4.7uH 4A,Power inductor 6x6 mm shielded,,L_Bourns_SRN6045,"e.g. Bourns SRN6045TA-4R7Y or any 6x6 shielded, Isat >= 4 A"
+Q1,1,FS8205A,"Dual N-MOSFET common drain, 20 V, 6 A (battery protection)",FS8205A,TSSOP-8_4.4x3mm_P0.65mm,
+Q2,1,AO4407A,P-MOSFET -30 V 12 A 12 mOhm (load sharing),AO4407A,SOIC-8_3.9x4.9mm_P1.27mm,load-share P-FET; off while USB present
+Q3,1,AO3401A,P-MOSFET -30 V 4 A (LED rail switch),AO3401A,SOT-23,LED rail switch
+Q4,1,2N7002,N-MOSFET 60 V 300 mA,2N7002,SOT-23,inverts LED_EN for Q3
+"Q5, Q6",2,MMBT3904,NPN transistor (auto-reset),MMBT3904,SOT-23,auto-reset: EN; auto-reset: IO0
+"R1, R2",2,5.1k,Resistor 0603 1%,,R_0603_1608Metric,CC1 Rd -> sink advertises 5 V device; CC2 Rd
+R3,1,1.2k,Resistor 0603 1%,,R_0603_1608Metric,PROG: 1.2k = 1.0 A charge; use 2k for 0.58 A (weak USB ports)
+"R4, R5, R7, R22",4,1k,Resistor 0603 1%,,R_0603_1608Metric,DW01 CS sense; touch series / ESD; 0R also fine
+R6,1,100R,Resistor 0603 1%,,R_0603_1608Metric,DW01 VCC filter
+"R8, R11, R14, R15, R16, R17",6,100k,Resistor 0603 1%,,R_0603_1608Metric,LED_EN pull-down: LEDs off during boot; VBAT divider top (x2.0 in WLED battery usermod); VBUS bleed / Q2 gate pull-down; VBUS present detect
+R9,1,75k,Resistor 0603 1%,,R_0603_1608Metric,FB divider: Vout = 0.6*(1+75/10) = 5.1 V
+"R10, R12, R18, R19",4,10k,Resistor 0603 1%,,R_0603_1608Metric,Q3 gate pull-up
+R13,1,330R,Resistor 0603 1%,,R_0603_1608Metric,LED data series termination
+"R20, R21",2,12k,Resistor 0603 1%,,R_0603_1608Metric,
+SW1,1,POWER,Slide switch SPDT right-angle THT (power),C&K OS102011MA1QN1,SW_Slide_1P2T_CK_OS102011MA1Q,ON = SYS_EN high; only switches the LDO enable (tiny current)
+SW2,1,RESET,Tactile switch 3x6x2.5 mm SMD,TL3342 / TS-1187A,SW_SPST_TL3342,
+SW3,1,BOOT,Tactile switch 3x6x2.5 mm SMD,TL3342 / TS-1187A,SW_SPST_TL3342,
+U1,1,ESP32-WROOM-32E-N4,"ESP32-WROOM-32E-N4 WiFi/BT module, 4 MB flash",ESP32-WROOM-32E-N4,ESP32-WROOM-32E,
+U2,1,TP4056,"1 A linear Li-ion charger, ESOP-8",TP4056,SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,
+U3,1,DW01A,1S Li-ion protection IC,DW01A-G,SOT-23-6,
+U4,1,MT3608,"Boost converter 2-24 V in, 1.2 MHz, 4 A switch",MT3608,SOT-23-6,
+U5,1,AP2112K-3.3,LDO 3.3 V 600 mA low dropout,AP2112K-3.3TRG1,SOT-23-5,
+U6,1,CH340C,"USB-UART bridge, internal oscillator",CH340C,SOIC-16_3.9x9.9mm_P1.27mm,
+U7,1,74AHCT1G125,"Single bus buffer, 3.3->5 V level shift for LED data",SN74AHCT1G125DBVR,SOT-23-5,
+U8,1,USBLC6-2SC6,USB ESD protection (optional),USBLC6-2SC6,SOT-23-6,optional ESD protection

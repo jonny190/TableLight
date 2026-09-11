@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.log
+skidl_lib_sklib.py
+*-backups/
+*.kicad_pcb-bak
+*_sklib.py
+*.erc
