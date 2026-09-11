@@ -78,7 +78,7 @@ P = dict(
     sw_angle=-120.0,          # power switch: opposite side of the USB from the charge LEDs
     sw_w=9.0, sw_h=4.0,
     sw_center_below_pcb=2.6,
-    led_angles=(-66.0, -61.0),
+    led_angles=(-72.0, -67.0),
     led_hole_d=2.5,
     led_center_below_pcb=1.0,
 

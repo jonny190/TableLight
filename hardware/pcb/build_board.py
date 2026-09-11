@@ -48,8 +48,9 @@ BOARD_R = P["pcb_r"]
 SLOT_W, SLOT_H = P["pcb_slot"]
 
 # net classes -----------------------------------------------------------------
-POWER_NETS = {"BAT+", "CELL-", "PROT_FET_D", "VSYS", "+5V", "VLED", "VBUS", "BOOST_SW"}
-TRACK_DEFAULT, TRACK_POWER = 0.25, 0.8
+POWER_NETS = {"BAT+", "CELL-", "PROT_FET_D", "VSYS", "+5V", "VLED", "BOOST_SW"}
+VBUS_NETS = {"VBUS"}            # 0.4 mm: the USB-C VBUS pads are 0.6 mm wide with 0.2 mm to the GND pads
+TRACK_DEFAULT, TRACK_POWER, TRACK_VBUS = 0.25, 0.8, 0.4
 CLEARANCE = 0.2
 VIA_D, VIA_DRILL = 0.7, 0.35
 
@@ -99,8 +100,8 @@ PLACEMENT = {
     "R16": (-16.0, -36.5, 90), "R17": (-19.0, -36.5, 90), "C17": (-22.0, -36.5, 90),   # VBUS detect -> IO34 (pin 6)
     "U5": (20.0, -33.0, 0), "C9": (16.5, -36.5, 0), "C10": (23.5, -36.5, 0),           # 3.3 V LDO
     "U7": (30.0, -30.0, 0), "C15": (30.0, -33.5, 0), "R13": (34.5, -30.0, 90),         # level shifter
-    "J4": (-16.5, -30.0, 270),                                                        # expansion header (origin = pin 1; pins run toward -X)
-    "SW2": (-27.0, -37.0, 0), "SW3": (-37.5, -28.5, 0),                                 # RESET / BOOT
+    "J4": (-20.5, -30.0, 270),                                                        # expansion header (origin = pin 1; pins run toward -X)
+    "SW2": (-27.0, -37.0, 0), "SW3": (-40.0, -28.5, 0),                                 # RESET / BOOT
     # --- side connectors, wires run between the holders into the centre slot --------------
     "J2": (48.5, 4.0, 90), "J3": (-48.5, -4.0, 90), "J5": (-47.0, 17.0, 90),
     "C8": (47.5, -12.0, 90),
@@ -109,8 +110,8 @@ PLACEMENT = {
     "R1": (5.5, 43.0, 0), "R2": (5.5, 45.0, 0), "C1": (9.5, 47.0, 0),
     "U8": (-6.0, 44.5, 0),
     "U6": (-13.5, 42.0, 0), "C14": (-8.5, 37.5, 90),
-    "Q5": (-21.5, 44.0, 0), "Q6": (-21.5, 40.0, 0), "R20": (-27.5, 40.0, 90), "R21": (-27.5, 37.0, 90),
-    "D3": (*polar(52.5, LED_ANGS[0]), LED_ANGS[0] + 90), "D4": (*polar(52.5, LED_ANGS[1]), LED_ANGS[1] + 90),
+    "Q5": (-21.5, 43.5, 0), "Q6": (-21.5, 39.5, 0), "R20": (-27.5, 40.0, 90), "R21": (-27.5, 37.0, 90),
+    "D3": (*polar(51.0, LED_ANGS[0]), LED_ANGS[0] + 90), "D4": (*polar(51.0, LED_ANGS[1]), LED_ANGS[1] + 90),
     "R4": (-29.0, 42.5, 90), "R5": (-31.5, 40.5, 90),
     # --- protection at the '-' end ... (left, near the BT pad 2 side is +X; CELL- pads are pad 2 at +X!) ---
     "Q1": (-41.5, 28.5, 0), "U3": (-34.0, 28.0, 0),
@@ -121,7 +122,7 @@ PLACEMENT = {
     # --- boost + LED rail switch (right) -----------------------------------------------------
     "U4": (46.0, 24.0, 0), "L1": (47.3, 16.0, 90), "D2": (41.0, 27.5, 0),
     "R9": (34.0, 28.5, 90), "R10": (36.0, 28.5, 90),
-    "C4": (40.5, 31.5, 0), "C5": (40.5, 33.5, 0), "C6": (28.0, 33.0, 0), "C7": (28.0, 35.0, 0),
+    "C4": (42.0, 31.5, 90), "C5": (17.5, 29.5, 90), "C6": (28.0, 33.0, 0), "C7": (28.0, 35.0, 0),   # C4 at the boost, C5 at the VSYS source
     "Q3": (23.5, 33.0, 0), "Q4": (19.0, 33.0, 0), "R11": (19.0, 36.5, 0), "R12": (23.5, 36.5, 0),
     "SW1": None,   # computed: pins centred at polar(SW_R, SW_ANG), actuator outward
 }
@@ -309,8 +310,20 @@ def build_placed_board():
     fps, nets = add_footprints(board, parts)
     add_outline(board)
     # antenna keep-out: no copper under the module antenna, both layers
-    ax, ay0, ay1 = 9.0 + 1.5, ESP_Y - 25.5 / 2 - 1.0, ESP_Y - 25.5 / 2 + 6.0 + 0.5
+    # module body spans y ESP_Y-15.79 .. ESP_Y+9.81; the antenna is its top ~6.5 mm, pad 1/38 start at ESP_Y-8.25
+    ax, ay0, ay1 = 9.0 + 1.5, ESP_Y - 15.79 - 1.0, ESP_Y - 8.25 - 0.45 - 0.9
     add_rule_area(board, [(-ax, ay0), (ax, ay0), (ax, ay1), (-ax, ay1)], [pcbnew.F_Cu, pcbnew.B_Cu], "antenna_keepout")
+    # edge ring: no tracks/vias within 0.5 mm of the board edge (the autorouter only knows net clearance)
+    ring_pts = [polar(BOARD_R - 0.5, t) for t in range(0, 360, 5)] + [polar(BOARD_R + 2.0, t) for t in range(355, -1, -5)]
+    z = pcbnew.ZONE(board)
+    z.SetIsRuleArea(True); z.SetDoNotAllowTracks(True); z.SetDoNotAllowVias(True)
+    z.SetDoNotAllowCopperPour(False); z.SetDoNotAllowPads(False); z.SetDoNotAllowFootprints(False)
+    ls = pcbnew.LSET(); ls.addLayer(pcbnew.F_Cu); ls.addLayer(pcbnew.B_Cu); z.SetLayerSet(ls)
+    z.SetZoneName("edge_keepout")
+    ol = z.Outline(); ol.NewOutline()
+    for (x, y) in ring_pts:
+        ol.Append(FromMM(x), FromMM(y))
+    board.Add(z)
     # screw-head keep-outs on F.Cu around H1..H4 (M3 heads, r = 4 mm): no tracks/vias/pour under the heads
     for i in range(4):
         cx, cy = polar(P["pcb_hole_r"], 45 + 90 * i)
@@ -342,20 +355,100 @@ def rewrite_dsn_classes(dsn_path):
     names_blob, circuit, width, clearance = m.group(1), m.group(2), m.group(3), m.group(4)
     names = re.findall(r'"([^"]+)"|(\S+)', names_blob)
     names = [a or b for a, b in names]
-    keep = [n for n in names if n not in POWER_NETS]
+    keep = [n for n in names if n not in POWER_NETS and n not in VBUS_NETS]
     power = [n for n in names if n in POWER_NETS]
+    vbus = [n for n in names if n in VBUS_NETS]
     unit = 1000.0 if float(width) > 10 else 1.0   # um vs mm
     def q(n): return f'"{n}"'
     new_default = f'(class kicad_default {" ".join(q(n) for n in keep)}\n      (circuit{circuit})\n      (rule (width {width}) (clearance {clearance}))\n    )'
     new_power = f'\n    (class power {" ".join(q(n) for n in power)}\n      (circuit{circuit})\n      (rule (width {TRACK_POWER*unit:g}) (clearance {clearance}))\n    )'
-    txt = txt[:m.start()] + new_default + new_power + txt[m.end():]
+    new_vbus = f'\n    (class vbus {" ".join(q(n) for n in vbus)}\n      (circuit{circuit})\n      (rule (width {TRACK_VBUS*unit:g}) (clearance {clearance}))\n    )'
+    txt = txt[:m.start()] + new_default + new_power + new_vbus + txt[m.end():]
     open(dsn_path, "w").write(txt)
     return keep, power
 
 
-def autoroute(board, workdir, passes=60):
+def _sexp(text):
+    """Minimal s-expression reader -> nested lists of strings."""
+    toks = re.findall(r'\(|\)|"[^"]*"|[^\s()]+', text)
+    stack, cur = [], []
+    for t in toks:
+        if t == "(":
+            stack.append(cur); cur = []
+        elif t == ")":
+            done = cur; cur = stack.pop(); cur.append(done)
+        else:
+            cur.append(t.strip('"'))
+    return cur
+
+
+def import_ses(board, ses_path):
+    """Apply a Specctra session (freerouting output) to the board: wires -> tracks, vias -> vias.
+    pcbnew.ImportSpecctraSES needs a running pcbnew frame, so this is done by hand."""
+    tree = _sexp(open(ses_path).read())
+    layer_ids = {"F.Cu": pcbnew.F_Cu, "B.Cu": pcbnew.B_Cu}
+    nets = {n.GetNetname(): n for n in board.GetNetsByName().values()} if hasattr(board, "GetNetsByName") else None
+    def find_net(name):
+        n = board.FindNet(name)
+        if n is None:
+            raise RuntimeError("SES net not on board: " + name)
+        return n
+
+    def walk(node, path=()):
+        if not isinstance(node, list) or not node:
+            return
+        yield node, path
+        for ch in node:
+            if isinstance(ch, list):
+                yield from walk(ch, path + (node[0] if isinstance(node[0], str) else "",))
+
+    res = 10  # units per um (resolution um 10) -> default; read from file
+    for node, _ in walk(tree):
+        if node[0] == "resolution":
+            res = int(node[2])
+            break
+    scale = 1000.0 / res  # ses units -> nm ... (1 um = 1000 nm; res units per um)
+    def to_nm(v):
+        return int(round(float(v) * scale))
+
+    n_tracks = n_vias = 0
+    for node, _ in walk(tree):
+        if node[0] != "net" or len(node) < 2:
+            continue
+        net = find_net(node[1])
+        for item in node[2:]:
+            if not isinstance(item, list):
+                continue
+            if item[0] == "wire":
+                for sub in item[1:]:
+                    if isinstance(sub, list) and sub[0] == "path":
+                        layer, width = sub[1], to_nm(sub[2])
+                        pts = [(to_nm(sub[i]), -to_nm(sub[i + 1])) for i in range(3, len(sub) - 1, 2)]
+                        for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                            if (x1, y1) == (x2, y2):
+                                continue
+                            t = pcbnew.PCB_TRACK(board)
+                            t.SetStart(VECTOR2I(x1, y1)); t.SetEnd(VECTOR2I(x2, y2))
+                            t.SetWidth(width); t.SetLayer(layer_ids[layer]); t.SetNet(net)
+                            board.Add(t); n_tracks += 1
+            elif item[0] == "via":
+                m = re.match(r"Via\[\d+-\d+\]_(\d+):(\d+)_um", item[1])
+                dia, drill = (int(m.group(1)) * 1000, int(m.group(2)) * 1000) if m else (FromMM(VIA_D), FromMM(VIA_DRILL))
+                v = pcbnew.PCB_VIA(board)
+                v.SetPosition(VECTOR2I(to_nm(item[2]), -to_nm(item[3])))
+                v.SetViaType(pcbnew.VIATYPE_THROUGH)
+                v.SetWidth(dia); v.SetDrill(drill)
+                v.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu); v.SetNet(net)
+                board.Add(v); n_vias += 1
+    print(f"SES import: {n_tracks} track segments, {n_vias} vias")
+
+
+def autoroute(board, workdir, passes=60, reuse=False):
     dsn = os.path.join(workdir, "tablelight.dsn")
     ses = os.path.join(workdir, "tablelight.ses")
+    if reuse and os.path.exists(ses):
+        import_ses(board, ses)
+        return
     if not pcbnew.ExportSpecctraDSN(board, dsn):
         raise RuntimeError("DSN export failed")
     rewrite_dsn_classes(dsn)
@@ -367,8 +460,7 @@ def autoroute(board, workdir, passes=60):
     subprocess.run(cmd, check=False, timeout=3600, stdout=open(os.path.join(workdir, "freerouting.log"), "w"), stderr=subprocess.STDOUT)
     if not os.path.exists(ses):
         raise RuntimeError("freerouting produced no SES; see freerouting.log")
-    if not pcbnew.ImportSpecctraSES(board, ses):
-        raise RuntimeError("SES import failed")
+    import_ses(board, ses)
 
 
 def unrouted_count(board):
@@ -444,7 +536,7 @@ def render_previews(pcb_path, out_dir):
         args = ["kicad-cli", "pcb", "export", "svg", "--layers", layers, "--page-size-mode", "2", "--exclude-drawing-sheet",
                 "-o", os.path.join(svgdir, name + ".svg"), pcb_path]
         if side == "bottom":
-            args.insert(-2, "--mirror")
+            args.insert(4, "--mirror")
         subprocess.run(args, check=True)
         cairosvg.svg2png(url=os.path.join(svgdir, name + ".svg"), write_to=os.path.join(ROOT, "docs", "images", name + ".png"), output_width=1400)
         shutil.rmtree(svgdir, ignore_errors=True)
@@ -456,6 +548,7 @@ def main():
     ap.add_argument("--stage", choices=["place", "route", "finish"], default="finish")
     ap.add_argument("--passes", type=int, default=60)
     ap.add_argument("--from-routed", action="store_true", help="skip routing: load kicad/tablelight_routed.kicad_pcb")
+    ap.add_argument("--reuse-ses", action="store_true", help="skip freerouting, import the existing kicad/tablelight.ses")
     args = ap.parse_args()
     os.makedirs(KICAD_DIR, exist_ok=True)
     parts, _ = load_circuit()
@@ -474,12 +567,15 @@ def main():
         if args.stage == "place":
             board.Save(PCB_PATH)
             return
-        autoroute(board, KICAD_DIR, passes=args.passes)
+        autoroute(board, KICAD_DIR, passes=args.passes, reuse=args.reuse_ses)
         board.Save(routed_path)
         print("routed board ->", routed_path)
         if args.stage == "route":
             board.Save(PCB_PATH)
             return
+        # The zone filler segfaults on a BOARD created in-process; finish from the saved file in a fresh interpreter.
+        rc = subprocess.call([sys.executable, os.path.abspath(__file__), "--stage", "finish", "--from-routed"])
+        sys.exit(rc)
 
     add_gnd_zones(board, gnd)
     filler = pcbnew.ZONE_FILLER(board)
