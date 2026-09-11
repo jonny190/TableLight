@@ -75,10 +75,10 @@ P = dict(
     usb_angle=-90.0,
     usb_w=13.0, usb_h=7.5,    # opening admits the plug over-mould (receptacle is ~3 mm behind the outer face)
     usb_center_below_pcb=1.63,
-    sw_angle=-60.0,
+    sw_angle=-120.0,          # power switch: opposite side of the USB from the charge LEDs
     sw_w=9.0, sw_h=4.0,
     sw_center_below_pcb=2.6,
-    led_angles=(-114.0, -119.0),
+    led_angles=(-66.0, -61.0),
     led_hole_d=2.5,
     led_center_below_pcb=1.0,
 

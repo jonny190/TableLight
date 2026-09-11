@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "tablelight_netlist.py")
-    (date "09/11/2026 09:22 AM")
+    (date "09/11/2026 10:04 AM")
     (tool "SKiDL (2.3.0)")
     (sheet
       (number 1)
@@ -55,7 +55,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "MpsAenkdDC")
+          (name "SKiDL Tag") "dlfRO1QgqT")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:208"))
       (libsource
@@ -64,7 +64,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "8fed3fa3-1bcb-5b58-ae1a-621930316279"))
+      (tstamps "d2588a0a-5133-58b5-b058-cbeaa51f5187"))
     (comp
       (ref "BT2")
       (value "18650 (optional 2nd cell)")
@@ -78,7 +78,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ZdWgruvZA6")
+          (name "SKiDL Tag") "zZUvBGJm1u")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:208"))
       (libsource
@@ -87,7 +87,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "03271e2d-7bfc-58d9-993d-6aee33e1148d"))
+      (tstamps "b279be94-8778-5be1-84be-08c7981a6aa9"))
     (comp
       (ref "C1")
       (value "10uF 10V")
@@ -101,7 +101,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "tZ33mzTCdl")
+          (name "SKiDL Tag") "9KJtTYXfYb")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:197"))
       (libsource
@@ -110,7 +110,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "80c3dddf-75aa-5880-9781-e0376a07aeb6"))
+      (tstamps "4eb152ac-9f4b-52f1-bf2f-9e9d2cc17c11"))
     (comp
       (ref "C10")
       (value "10uF 10V")
@@ -124,7 +124,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "lfAhobnrNG")
+          (name "SKiDL Tag") "qaaoeXYpVK")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:262"))
       (libsource
@@ -133,7 +133,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "3bd0f30b-7f80-57d6-9230-849f28403ca1"))
+      (tstamps "a7c5ec9e-3435-51be-9c67-8aac50d8389e"))
     (comp
       (ref "C11")
       (value "100nF")
@@ -147,7 +147,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "CPUK3fOu2I")
+          (name "SKiDL Tag") "4hFHG0VxmC")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:272"))
       (libsource
@@ -156,7 +156,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e5efb1c0-a36f-54cf-af96-8a68c0c375c9"))
+      (tstamps "8696eff8-0b2d-5062-86e4-ccbd33196d7a"))
     (comp
       (ref "C12")
       (value "10uF 10V")
@@ -170,7 +170,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ocmBy6ssGE")
+          (name "SKiDL Tag") "AiZSWLLsJA")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:273"))
       (libsource
@@ -179,7 +179,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "20349013-5d6a-538c-a59d-9b6cf91362ce"))
+      (tstamps "fc930e51-409c-5bcd-8977-cec7eb8deede"))
     (comp
       (ref "C13")
       (value "1uF")
@@ -193,7 +193,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "e7kzhgh6CN")
+          (name "SKiDL Tag") "F_q_OkgsNY")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:276"))
       (libsource
@@ -202,7 +202,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "18479af0-bcfc-58d0-9526-429b409611c4"))
+      (tstamps "e6febcfd-1b5c-5186-935f-59bacaae0cc9"))
     (comp
       (ref "C14")
       (value "100nF")
@@ -216,7 +216,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "B1VsuTxGi4")
+          (name "SKiDL Tag") "Bnl3II1hDd")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:324"))
       (libsource
@@ -225,7 +225,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "06b8ec84-6bf8-5fe3-9c0d-a98c276dfe93"))
+      (tstamps "b384c604-fdc7-517e-8196-603320a90ab6"))
     (comp
       (ref "C15")
       (value "100nF")
@@ -239,7 +239,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "DpCyzwTBHf")
+          (name "SKiDL Tag") "3FxK_D0Y1s")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:310"))
       (libsource
@@ -248,7 +248,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "8bc36bbf-8d07-57ff-8c0b-aa0964ecc04b"))
+      (tstamps "2ec29c16-4f83-517a-a1e2-ab1ada4e9d8d"))
     (comp
       (ref "C16")
       (value "100nF")
@@ -262,7 +262,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "lxuj03Fcdx")
+          (name "SKiDL Tag") "DMvulBRjqu")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:297"))
       (libsource
@@ -271,7 +271,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "2c6d8497-7534-534c-a8bb-00bb742f472b"))
+      (tstamps "c5b1c6d8-52f6-573f-970d-0278aac58093"))
     (comp
       (ref "C17")
       (value "100nF")
@@ -285,7 +285,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "wPyvMpcJXK")
+          (name "SKiDL Tag") "Xi_Fl7_9YG")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:300"))
       (libsource
@@ -294,7 +294,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "69bf748d-3253-52ff-bef7-fd1c70bae82f"))
+      (tstamps "b1e2c5a9-d72b-5dac-976d-4959bc50c359"))
     (comp
       (ref "C2")
       (value "10uF 10V")
@@ -308,7 +308,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "wUusxCylCN")
+          (name "SKiDL Tag") "zcM4N40cbG")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:198"))
       (libsource
@@ -317,7 +317,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "f69471c5-675a-5725-941a-1e9b6a52a8c4"))
+      (tstamps "c9900260-884c-5a36-88cb-8ccf9a1e63e0"))
     (comp
       (ref "C3")
       (value "100nF")
@@ -331,7 +331,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "SB_xC7mrIo")
+          (name "SKiDL Tag") "e4JHjkV581")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:217"))
       (libsource
@@ -340,7 +340,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "431d6d5b-3441-5054-bdbe-a4f053bd6640"))
+      (tstamps "8ab6f852-1ed8-50d7-8a2f-114b7301e473"))
     (comp
       (ref "C4")
       (value "22uF 10V")
@@ -354,7 +354,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ihwq10Z_iY")
+          (name "SKiDL Tag") "aeLqk5IYmG")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:245"))
       (libsource
@@ -363,7 +363,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "5a7820b2-22e4-5b96-9cb0-b96d15233d40"))
+      (tstamps "1824a25a-c33d-5a48-a315-20fec5ff8e6d"))
     (comp
       (ref "C5")
       (value "22uF 10V")
@@ -377,7 +377,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "EMuYY0HS64")
+          (name "SKiDL Tag") "TwgLnEvYDD")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:245"))
       (libsource
@@ -386,7 +386,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "03ff6d68-8ab1-57c0-a56f-5241920a51b4"))
+      (tstamps "1294ad6b-3f06-5dda-8c84-d025eeae764f"))
     (comp
       (ref "C6")
       (value "22uF 10V")
@@ -400,7 +400,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ft7WVCkHF9")
+          (name "SKiDL Tag") "y_2gPxmk_N")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:247"))
       (libsource
@@ -409,7 +409,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "782da7c5-97f4-5a25-85a9-02974d21fba0"))
+      (tstamps "eb2b125c-6626-58d2-91a2-171baf8975c6"))
     (comp
       (ref "C7")
       (value "22uF 10V")
@@ -423,7 +423,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "NnWxoCPxyp")
+          (name "SKiDL Tag") "okFbq8nLS2")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:247"))
       (libsource
@@ -432,7 +432,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0affbb16-4ff4-5c7c-9f9e-a3063db45008"))
+      (tstamps "23a1fa29-af28-52c6-aa11-f864ab160561"))
     (comp
       (ref "C8")
       (value "100uF 6.3V")
@@ -446,7 +446,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "SL6Z1itHXE")
+          (name "SKiDL Tag") "c7WNd1v6vA")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:254"))
       (libsource
@@ -455,7 +455,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "bc47b99f-27ba-5fc0-b95d-aa6e81162fbb"))
+      (tstamps "9d4ef76f-1f57-5c72-8a79-28ab81423c3d"))
     (comp
       (ref "C9")
       (value "1uF")
@@ -469,7 +469,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "f5QTzB33ms")
+          (name "SKiDL Tag") "uDyjUaSJBL")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:261"))
       (libsource
@@ -478,7 +478,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "5f8f8cdb-e237-512f-99d4-e5962a333389"))
+      (tstamps "774cef28-ae16-5941-9211-b07e36591eca"))
     (comp
       (ref "D1")
       (value "SS34")
@@ -492,7 +492,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "e8dE2tGBAr")
+          (name "SKiDL Tag") "l15sHsoyFe")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:228"))
       (libsource
@@ -501,7 +501,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "941e31dc-0a75-5ed3-b84d-6aa69e4fa8b2"))
+      (tstamps "466ad3ae-a80b-5049-bb5b-c644352207f5"))
     (comp
       (ref "D2")
       (value "SS34")
@@ -515,7 +515,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "_ANEX1_WlT")
+          (name "SKiDL Tag") "peqOvVtBit")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:241"))
       (libsource
@@ -524,7 +524,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "045ff51a-4e0e-5be0-bf33-cf0f17505903"))
+      (tstamps "ff8fdcc6-0a4d-5654-9475-aeb3ae54ab9d"))
     (comp
       (ref "D3")
       (value "RED")
@@ -538,7 +538,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "G3FV2PNAH3")
+          (name "SKiDL Tag") "BOUAPGYQdZ")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:199"))
       (libsource
@@ -547,7 +547,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "123f4284-7034-5e19-a2f5-9892f8dc50fe"))
+      (tstamps "4fabfb82-d5cd-5d1f-ab67-9d659cdbdb30"))
     (comp
       (ref "D4")
       (value "GREEN")
@@ -561,7 +561,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "gXmPUV06BB")
+          (name "SKiDL Tag") "AGaabUlLML")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:200"))
       (libsource
@@ -570,7 +570,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "28f32309-36a9-5249-bf53-b2dd6522fbfb"))
+      (tstamps "7ebfb5ca-693d-56c2-98be-101eca02f1c7"))
     (comp
       (ref "H1")
       (value "M3")
@@ -584,7 +584,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "djvcA0irE3")
+          (name "SKiDL Tag") "zCdfY61cQy")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:332"))
       (libsource
@@ -593,7 +593,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "578b6eed-8659-5947-9743-b366d1c74339"))
+      (tstamps "9dee9c38-68ac-567c-b9f6-bd8de51fc1c8"))
     (comp
       (ref "H2")
       (value "M3")
@@ -607,7 +607,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "OLR8sR5N9f")
+          (name "SKiDL Tag") "dC1A7Cen0S")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:332"))
       (libsource
@@ -616,7 +616,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "02a65d35-f046-5294-993d-571e10a20184"))
+      (tstamps "74689b4d-61cf-5fc4-9e9d-a80a305369bf"))
     (comp
       (ref "H3")
       (value "M3")
@@ -630,7 +630,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "lFJCg6M3Qa")
+          (name "SKiDL Tag") "fJJYHhCSNg")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:332"))
       (libsource
@@ -639,7 +639,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e29cbabb-6392-5e36-9501-f591adf41ae4"))
+      (tstamps "2f1e3664-dc43-5ea4-9ced-f632e5958bd1"))
     (comp
       (ref "H4")
       (value "M3")
@@ -653,7 +653,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "VJcjVpRveh")
+          (name "SKiDL Tag") "rjlW3Nu4XK")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:332"))
       (libsource
@@ -662,7 +662,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "43ec1ec5-cb3a-5e24-955e-5704115b11ab"))
+      (tstamps "d7a44e9a-1948-5750-8665-7e7b2494b253"))
     (comp
       (ref "J1")
       (value "USB-C 16P")
@@ -676,7 +676,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "t2OBj2v4WT")
+          (name "SKiDL Tag") "GcjoXTvLRK")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:182"))
       (libsource
@@ -685,7 +685,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "212a1131-ac5f-5450-a91c-8e94c088ffd8"))
+      (tstamps "de4105dc-0cd8-56f8-8ea2-9abc53b193aa"))
     (comp
       (ref "J2")
       (value "LED RING")
@@ -699,7 +699,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "lTg8B97OKk")
+          (name "SKiDL Tag") "psQMpIXl2L")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:312"))
       (libsource
@@ -708,7 +708,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "f20e7d46-030f-5ed7-9758-4c01388e352c"))
+      (tstamps "2164f710-d62a-52ba-b347-f463ceedc317"))
     (comp
       (ref "J3")
       (value "TOUCH")
@@ -722,7 +722,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "mrpgGuWwqb")
+          (name "SKiDL Tag") "W1OGHWY5gr")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:293"))
       (libsource
@@ -731,7 +731,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "1853bb75-7171-543f-9a06-1836d35969c0"))
+      (tstamps "07887b23-4c5a-58eb-9b2f-e86ff20121c7"))
     (comp
       (ref "J4")
       (value "EXP")
@@ -745,7 +745,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "tciwFlaiVu")
+          (name "SKiDL Tag") "f9Hy94Tf9H")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:302"))
       (libsource
@@ -754,7 +754,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "5014968c-2ce4-5559-9550-ec0e7e46092a"))
+      (tstamps "0c08d712-6b1c-5d4f-8dfb-b0e14550e0df"))
     (comp
       (ref "J5")
       (value "BAT ALT")
@@ -768,7 +768,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "kD3sszs_Vb")
+          (name "SKiDL Tag") "x9mVlK1U6N")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:209"))
       (libsource
@@ -777,21 +777,21 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e24a0d9e-820e-5a45-be90-854ad151656c"))
+      (tstamps "954cd81a-d990-5f8b-b3d7-be8bf57c8c59"))
     (comp
       (ref "L1")
       (value "4.7uH 4A")
       (description "Power inductor 6x6 mm shielded")
-      (footprint "Inductor_SMD:L_Bourns_SRN6045")
+      (footprint "Inductor_SMD:L_Bourns_SRN6045TA")
       (fields
         (field
           (name "Description") "Power inductor 6x6 mm shielded")
         (field
-          (name "Footprint") "Inductor_SMD:L_Bourns_SRN6045")
+          (name "Footprint") "Inductor_SMD:L_Bourns_SRN6045TA")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "dULiPkVXPB")
+          (name "SKiDL Tag") "XecYB95kWn")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:240"))
       (libsource
@@ -800,7 +800,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "2321be44-0eb5-56cd-be88-db306eede37c"))
+      (tstamps "b265fb6a-355f-5c35-8470-9c4ac06c800a"))
     (comp
       (ref "Q1")
       (value "FS8205A")
@@ -814,7 +814,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "1ObzSNpb1w")
+          (name "SKiDL Tag") "fLlYwZcicj")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:215"))
       (libsource
@@ -823,7 +823,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "15f9b5b6-3304-5ee5-bf25-ac7a1e717291"))
+      (tstamps "679950b7-3c01-550c-bb13-e4486ae91a91"))
     (comp
       (ref "Q2")
       (value "AO4407A")
@@ -837,7 +837,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "uSq1u1TWAM")
+          (name "SKiDL Tag") "dS_xuUsXEE")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:229"))
       (libsource
@@ -846,7 +846,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "9c0ec368-d253-5858-a935-154fb39e9840"))
+      (tstamps "3022c6ec-0c9e-5c01-937e-d0ffd756d8df"))
     (comp
       (ref "Q3")
       (value "AO3401A")
@@ -860,7 +860,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "XLtGSPeLoL")
+          (name "SKiDL Tag") "0Ccuikg3A9")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:250"))
       (libsource
@@ -869,7 +869,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0d1a6a35-76c7-5f66-ae33-6c8a01f96a06"))
+      (tstamps "41adaeb6-feb1-53cb-8a83-190ca138dfea"))
     (comp
       (ref "Q4")
       (value "2N7002")
@@ -883,7 +883,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "hZtFEXMHe3")
+          (name "SKiDL Tag") "1KolXiRd8Y")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:252"))
       (libsource
@@ -892,7 +892,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4e97936a-a223-515b-9c5f-a05c7f800a3f"))
+      (tstamps "2cab603a-0888-57e3-b46d-aad399b0b179"))
     (comp
       (ref "Q5")
       (value "MMBT3904")
@@ -906,7 +906,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "XzO1_xKDGJ")
+          (name "SKiDL Tag") "rWRPnbVeoe")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:327"))
       (libsource
@@ -915,7 +915,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "d762eb82-7c9c-5570-853d-8f5f4faf47ea"))
+      (tstamps "f5b6bd99-fee4-5076-8c7f-96c39af77717"))
     (comp
       (ref "Q6")
       (value "MMBT3904")
@@ -929,7 +929,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Rm4WYAy8EK")
+          (name "SKiDL Tag") "7PoZE_yGHU")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:328"))
       (libsource
@@ -938,7 +938,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "4fd77c81-1894-5b5b-910d-b9999148fc31"))
+      (tstamps "fbb5934e-d8e5-5a31-96a9-9207e8e999ce"))
     (comp
       (ref "R1")
       (value "5.1k")
@@ -952,7 +952,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "sOPMt9Uecq")
+          (name "SKiDL Tag") "NdNm0ozaRs")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:187"))
       (libsource
@@ -961,7 +961,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "39ad6511-c03b-5e72-af8c-a910203ae56d"))
+      (tstamps "8ba7581a-150e-563d-8f7e-b486221e6c05"))
     (comp
       (ref "R10")
       (value "10k")
@@ -975,7 +975,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "YO0Zp7Fm6U")
+          (name "SKiDL Tag") "iZ6vPSlHrn")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:243"))
       (libsource
@@ -984,7 +984,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e128d90b-abc4-536b-98c4-dca879eeb2ae"))
+      (tstamps "0ad89220-20bc-5aa4-9f39-66a3c448284d"))
     (comp
       (ref "R11")
       (value "100k")
@@ -998,7 +998,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "6S0eDr1DOu")
+          (name "SKiDL Tag") "8HnVVsCAji")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:253"))
       (libsource
@@ -1007,7 +1007,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "9886f631-572f-51df-9b1f-eec5930a5169"))
+      (tstamps "170a16e5-4611-5b04-a502-9ae438504855"))
     (comp
       (ref "R12")
       (value "10k")
@@ -1021,7 +1021,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "iXJJXQoufl")
+          (name "SKiDL Tag") "AgcaeZMjlI")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:251"))
       (libsource
@@ -1030,7 +1030,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "ca3eea97-8a96-5396-b9b3-5a9bfa5cff9c"))
+      (tstamps "bcfe36b5-8d7c-5c21-b339-9e79ede21e43"))
     (comp
       (ref "R13")
       (value "330R")
@@ -1044,7 +1044,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "A6iXaBj1T2")
+          (name "SKiDL Tag") "vgB1Pcv9oD")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:311"))
       (libsource
@@ -1053,7 +1053,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "8529aab5-90e8-5efa-a737-8ba191277b39"))
+      (tstamps "e63a79f9-2e51-5538-9af8-d3c51ddfd618"))
     (comp
       (ref "R14")
       (value "100k")
@@ -1067,7 +1067,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "9SP91FnXp2")
+          (name "SKiDL Tag") "lPG8ZMhkAG")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:295"))
       (libsource
@@ -1076,7 +1076,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "b5bf804a-3fa6-56b8-8a21-5b79e1e78a90"))
+      (tstamps "134b3410-b96e-5a6b-aa2e-ae149eb1c2e5"))
     (comp
       (ref "R15")
       (value "100k")
@@ -1090,7 +1090,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ERLpMMEaOi")
+          (name "SKiDL Tag") "_mGfAZkLLi")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:296"))
       (libsource
@@ -1099,7 +1099,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "6451ee44-c1ba-5ffd-a944-5b81f82c4031"))
+      (tstamps "04ff03c9-6f2e-5c30-91aa-5e2926279293"))
     (comp
       (ref "R16")
       (value "100k")
@@ -1113,7 +1113,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "sJPkRQBHwk")
+          (name "SKiDL Tag") "4W45ii2Uhb")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:298"))
       (libsource
@@ -1122,7 +1122,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0101cfb8-248f-5302-b13e-cdb40081d88c"))
+      (tstamps "76ce6ddd-8480-54b4-92b4-ae47bae156a4"))
     (comp
       (ref "R17")
       (value "100k")
@@ -1136,7 +1136,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "U7fj_E28yh")
+          (name "SKiDL Tag") "Caacdvvod5")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:299"))
       (libsource
@@ -1145,7 +1145,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "a741f763-c273-577c-b9a2-6a2d58910943"))
+      (tstamps "15228bae-0c4a-54b7-9c24-b90bfeec5d38"))
     (comp
       (ref "R18")
       (value "10k")
@@ -1159,7 +1159,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "h5qmu99rAC")
+          (name "SKiDL Tag") "Am2KYBwgqU")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:275"))
       (libsource
@@ -1168,7 +1168,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "60cf371d-f56e-540f-89c0-12388500a967"))
+      (tstamps "98493d2b-e21a-5045-a188-9e916f51c360"))
     (comp
       (ref "R19")
       (value "10k")
@@ -1182,7 +1182,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "9C3p6uPl4d")
+          (name "SKiDL Tag") "1BOXCBzUp2")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:277"))
       (libsource
@@ -1191,7 +1191,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "82922434-d29e-5729-86da-026c5d69d6d5"))
+      (tstamps "6ef51d60-16ef-5e0f-9425-a3f79c2adebc"))
     (comp
       (ref "R2")
       (value "5.1k")
@@ -1205,7 +1205,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "d6Rv4GEzCb")
+          (name "SKiDL Tag") "uYxjqs2X6J")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:188"))
       (libsource
@@ -1214,7 +1214,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "517d3b0e-eead-57d9-ba52-0484c013fd5e"))
+      (tstamps "c39b41f7-4eac-500f-aa49-cd6b99f4fcf6"))
     (comp
       (ref "R20")
       (value "12k")
@@ -1228,7 +1228,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Ewi3skvBob")
+          (name "SKiDL Tag") "pr1k0mkqAn")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:325"))
       (libsource
@@ -1237,7 +1237,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "fcb32ff5-f021-5890-9e3d-c327ae344755"))
+      (tstamps "32294230-c91b-5782-8206-a46e4eb9e247"))
     (comp
       (ref "R21")
       (value "12k")
@@ -1251,7 +1251,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "JaSCclRbr8")
+          (name "SKiDL Tag") "8S7MU3HQM_")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:326"))
       (libsource
@@ -1260,7 +1260,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "6782de91-09e8-5c6b-9746-538e99a9776f"))
+      (tstamps "3e824d3b-f08a-5ad4-a2d3-4ee0b16732f0"))
     (comp
       (ref "R22")
       (value "1k")
@@ -1274,7 +1274,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Gbh3hXq2Ec")
+          (name "SKiDL Tag") "8FHwc1fDUh")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:292"))
       (libsource
@@ -1283,7 +1283,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "790aca5c-216a-580a-b706-e1e48e6cfa6c"))
+      (tstamps "4dfaafa0-7dfd-56ba-a9ab-1058efd06800"))
     (comp
       (ref "R3")
       (value "1.2k")
@@ -1297,7 +1297,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "HFrg7o9GE6")
+          (name "SKiDL Tag") "pX83B6f6y9")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:196"))
       (libsource
@@ -1306,7 +1306,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "77a900d2-83ff-5392-8490-078638ae1073"))
+      (tstamps "bce87fe4-0fd7-55d7-a410-77243f7f80a2"))
     (comp
       (ref "R4")
       (value "1k")
@@ -1320,7 +1320,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "aOavTJDokW")
+          (name "SKiDL Tag") "dc02b6pF51")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:201"))
       (libsource
@@ -1329,7 +1329,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "e842ec58-845d-5a61-8cfb-11fabcbf5920"))
+      (tstamps "6514d470-af50-56db-aec2-f7b70cb5a600"))
     (comp
       (ref "R5")
       (value "1k")
@@ -1343,7 +1343,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "umjLLNgkfE")
+          (name "SKiDL Tag") "k4Dzc2Dnli")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:202"))
       (libsource
@@ -1352,7 +1352,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "18187ab8-bfcd-567c-8a32-cbd42e5f4b2f"))
+      (tstamps "b246e241-f310-5f6a-a049-5163b62b776d"))
     (comp
       (ref "R6")
       (value "100R")
@@ -1366,7 +1366,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "2ScgVKY7Yn")
+          (name "SKiDL Tag") "9MC8kk_JCD")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:216"))
       (libsource
@@ -1375,7 +1375,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "c7a0800c-d206-5b51-9ac3-c43b0c1e45a9"))
+      (tstamps "12289db8-df82-5d22-9b28-a8ab65b65543"))
     (comp
       (ref "R7")
       (value "1k")
@@ -1389,7 +1389,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "iGIrudKv9P")
+          (name "SKiDL Tag") "lhtUFznQ8A")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:219"))
       (libsource
@@ -1398,7 +1398,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "3604d69d-62a7-5af4-9afe-1f5d36b66d2e"))
+      (tstamps "0062fdfc-c0d3-5b17-803c-07cf1b277777"))
     (comp
       (ref "R8")
       (value "100k")
@@ -1412,7 +1412,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "DIzt3QVdOt")
+          (name "SKiDL Tag") "ANLKkSgYuZ")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:233"))
       (libsource
@@ -1421,7 +1421,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "751610ec-71be-5308-8a3f-f1a7a8c22d7c"))
+      (tstamps "6f352d1a-450b-59b4-b4b1-e04c21313880"))
     (comp
       (ref "R9")
       (value "75k")
@@ -1435,7 +1435,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "wC_hui_MSV")
+          (name "SKiDL Tag") "zwT7aJGYuX")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:242"))
       (libsource
@@ -1444,21 +1444,21 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "1cbf9ebd-a6bc-5e48-b439-1c0bcf94d281"))
+      (tstamps "32da2b1b-621d-5454-b658-53cd8b027492"))
     (comp
       (ref "SW1")
       (value "POWER")
       (description "Slide switch SPDT right-angle THT (power)")
-      (footprint "Button_Switch_THT:SW_Slide_1P2T_CK_OS102011MA1Q")
+      (footprint "Button_Switch_THT:SW_Slide_SPDT_Angled_CK_OS102011MA1Q")
       (fields
         (field
           (name "Description") "Slide switch SPDT right-angle THT (power)")
         (field
-          (name "Footprint") "Button_Switch_THT:SW_Slide_1P2T_CK_OS102011MA1Q")
+          (name "Footprint") "Button_Switch_THT:SW_Slide_SPDT_Angled_CK_OS102011MA1Q")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "uEiisUMqCq")
+          (name "SKiDL Tag") "np0Mg3LlHD")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:263"))
       (libsource
@@ -1467,7 +1467,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "b888e664-0ed9-5fb3-a173-de4c285044ae"))
+      (tstamps "b89eae60-a84f-51b1-b77b-e3fc9fc9cb2f"))
     (comp
       (ref "SW2")
       (value "RESET")
@@ -1481,7 +1481,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "kE4WnVxvus")
+          (name "SKiDL Tag") "Um2WYFxQiE")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:278"))
       (libsource
@@ -1490,7 +1490,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "9de34d86-aabb-5884-8cfd-0f089b21381d"))
+      (tstamps "ab35bb24-c935-5107-a056-dd9f308028a4"))
     (comp
       (ref "SW3")
       (value "BOOT")
@@ -1504,7 +1504,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "gpQVHB8zRB")
+          (name "SKiDL Tag") "S1ucKKNC8i")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:279"))
       (libsource
@@ -1513,21 +1513,21 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "9225be4d-1349-52ab-9c81-a5117702fe49"))
+      (tstamps "15f7c0df-1696-58c6-98bb-eacebfbef0de"))
     (comp
       (ref "U1")
       (value "ESP32-WROOM-32E-N4")
       (description "ESP32-WROOM-32E-N4 WiFi/BT module, 4 MB flash")
-      (footprint "RF_Module:ESP32-WROOM-32E")
+      (footprint "RF_Module:ESP32-WROOM-32")
       (fields
         (field
           (name "Description") "ESP32-WROOM-32E-N4 WiFi/BT module, 4 MB flash")
         (field
-          (name "Footprint") "RF_Module:ESP32-WROOM-32E")
+          (name "Footprint") "RF_Module:ESP32-WROOM-32")
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "TUC5hc9rlB")
+          (name "SKiDL Tag") "JfsowIktxL")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:269"))
       (libsource
@@ -1536,7 +1536,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "15f60f31-18d9-5173-91b6-abdecbd3694a"))
+      (tstamps "43629d45-1be3-5d3c-b2d8-752c173dc6fe"))
     (comp
       (ref "U2")
       (value "TP4056")
@@ -1550,7 +1550,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "Jcg5Gg7Qw3")
+          (name "SKiDL Tag") "cdFLXCop_y")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:192"))
       (libsource
@@ -1559,7 +1559,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "0841d56b-e191-5cc7-8947-7af12fe87f90"))
+      (tstamps "4b5a5ca2-c0da-518e-843a-5da5294fe1d8"))
     (comp
       (ref "U3")
       (value "DW01A")
@@ -1573,7 +1573,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "MnKkGQpOWT")
+          (name "SKiDL Tag") "3rTepYqM8U")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:214"))
       (libsource
@@ -1582,7 +1582,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "8c895291-f2fd-5bef-ada3-50ea53c929bd"))
+      (tstamps "286d7a23-4f11-58da-9a4f-a4e7d041e333"))
     (comp
       (ref "U4")
       (value "MT3608")
@@ -1596,7 +1596,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "ZpVL8eEuXN")
+          (name "SKiDL Tag") "3LIPEvZaI1")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:238"))
       (libsource
@@ -1605,7 +1605,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "30a2b9a3-b582-5641-af0a-71088e0bfebf"))
+      (tstamps "0749b636-9c59-5bb7-a188-c01dad6e3e8a"))
     (comp
       (ref "U5")
       (value "AP2112K-3.3")
@@ -1619,7 +1619,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "_AEUcScsMw")
+          (name "SKiDL Tag") "fo2XTYPXL6")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:259"))
       (libsource
@@ -1628,7 +1628,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "a7212588-4e5b-5e80-8f37-98f210b929c0"))
+      (tstamps "4cf3f206-15c3-5550-8207-24f151335c9e"))
     (comp
       (ref "U6")
       (value "CH340C")
@@ -1642,7 +1642,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "e4GjZKGOan")
+          (name "SKiDL Tag") "f7XpwcdF46")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:317"))
       (libsource
@@ -1651,7 +1651,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "611e276c-63d6-5710-9f24-9d7d24ed2508"))
+      (tstamps "7432c350-16ec-501a-99db-168960f8b7db"))
     (comp
       (ref "U7")
       (value "74AHCT1G125")
@@ -1665,7 +1665,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "aqdSIgJpJm")
+          (name "SKiDL Tag") "3UMJeLbwh7")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:308"))
       (libsource
@@ -1674,7 +1674,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "2bf118cb-399c-5585-b6ee-5352b8327537"))
+      (tstamps "eb5072cc-7c01-5f68-aebb-313ef8b6ce99"))
     (comp
       (ref "U8")
       (value "USBLC6-2SC6")
@@ -1688,7 +1688,7 @@
         (field
           (name "Datasheet"))
         (field
-          (name "SKiDL Tag") "JRWo0BiKwO")
+          (name "SKiDL Tag") "_4XrJDHgft")
         (field
           (name "SKiDL Line") "tablelight_netlist.py:189"))
       (libsource
@@ -1697,7 +1697,7 @@
       (sheetpath
         (names "/")
         (tstamps "/"))
-      (tstamps "a0471187-cd2f-5911-a485-155d586876b7")))
+      (tstamps "28daecd6-17ce-508d-a83c-58953cd744fa")))
   (nets
     (net
       (code 1)

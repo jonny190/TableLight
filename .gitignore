@@ -6,3 +6,14 @@ skidl_lib_sklib.py
 *.kicad_pcb-bak
 *_sklib.py
 *.erc
+hardware/pcb/tools/*.jar
+hardware/pcb/kicad/*-backups/
+hardware/pcb/kicad/*.kicad_prl
+hardware/pcb/kicad/fp-info-cache
+hardware/pcb/kicad/tablelight_placed.*
+hardware/pcb/kicad/tablelight_routed.*
+hardware/pcb/kicad/*.dsn
+hardware/pcb/kicad/*.ses
+hardware/pcb/kicad/freerouting.log
+hardware/pcb/kicad/svg_*/
+hardware/pcb/fab/gerbers/

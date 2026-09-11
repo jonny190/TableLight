@@ -66,9 +66,9 @@ C0805 = tmpl("C", "C", "Capacitor_SMD:C_0805_2012Metric", [(1, "1", PAS), (2, "2
 CP = tmpl("C_Polarized", "C", "Capacitor_SMD:CP_Elec_6.3x5.4", [(1, "+", PAS), (2, "-", PAS)], description="Electrolytic / polymer cap SMD 6.3x5.4")
 D_SMA = tmpl("D_Schottky", "D", "Diode_SMD:D_SMA", [(1, "K", PAS), (2, "A", PAS)], description="Schottky diode SMA")
 LED = tmpl("LED", "D", "LED_SMD:LED_0603_1608Metric", [(1, "K", PAS), (2, "A", PAS)], description="LED 0603")
-L = tmpl("L", "L", "Inductor_SMD:L_Bourns_SRN6045", [(1, "1", PAS), (2, "2", PAS)], description="Power inductor 6x6 mm shielded")
+L = tmpl("L", "L", "Inductor_SMD:L_Bourns_SRN6045TA", [(1, "1", PAS), (2, "2", PAS)], description="Power inductor 6x6 mm shielded")
 
-ESP32 = tmpl("ESP32-WROOM-32E", "U", "RF_Module:ESP32-WROOM-32E", [
+ESP32 = tmpl("ESP32-WROOM-32E", "U", "RF_Module:ESP32-WROOM-32", [
     (1, "GND", PWR), (2, "3V3", PWR), (3, "EN", IN), (4, "SENSOR_VP", IN), (5, "SENSOR_VN", IN),
     (6, "IO34", IN), (7, "IO35", IN), (8, "IO32", BI), (9, "IO33", BI), (10, "IO25", BI),
     (11, "IO26", BI), (12, "IO27", BI), (13, "IO14", BI), (14, "IO12", BI), (15, "GND", PWR),
@@ -137,7 +137,7 @@ HDR6 = tmpl("Conn_01x06", "J", "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54m
             [(i, str(i), PAS) for i in range(1, 7)], description="Pin header 1x6 2.54 mm (expansion)", mpn="generic")
 BATT = tmpl("BatteryHolder_18650", "BT", "Battery:BatteryHolder_Keystone_1042_1x18650", [(1, "+", PAS), (2, "-", PAS)],
             description="18650 PCB-mount holder", mpn="Keystone 1042 (or BH-18650-PC equiv.)")
-SW_SLIDE = tmpl("SW_SPDT_Slide", "SW", "Button_Switch_THT:SW_Slide_1P2T_CK_OS102011MA1Q", [(1, "1", PAS), (2, "COM", PAS), (3, "3", PAS)],
+SW_SLIDE = tmpl("SW_SPDT_Slide", "SW", "Button_Switch_THT:SW_Slide_SPDT_Angled_CK_OS102011MA1Q", [(1, "1", PAS), (2, "COM", PAS), (3, "3", PAS)],
                 description="Slide switch SPDT right-angle THT (power)", mpn="C&K OS102011MA1QN1")
 SW_TACT = tmpl("SW_Push", "SW", "Button_Switch_SMD:SW_SPST_TL3342", [(1, "1", PAS), (2, "2", PAS)],
                description="Tactile switch 3x6x2.5 mm SMD", mpn="TL3342 / TS-1187A")

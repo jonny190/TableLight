@@ -12,7 +12,7 @@ ESP32, with a capacitive touch pad hidden under the white top plate.
 | Light | 24-LED SK6812 RGBW (or WS2812B) ring under the head, shining down through a diffuser; optional second 16-LED ring |
 | Power | 1 **or** 2 x 18650 Li-ion in parallel (1S) in the base, USB-C charging (1 A) in the base, runs while charging |
 | Control | WLED app / web UI / Home Assistant + touch on the white top (ESP32 native touch) |
-| Electronics | one custom Ø110 mm PCB in the base (KiCad netlist + outline included); flashes WLED over the same USB-C port |
+| Electronics | one custom Ø110 mm PCB in the base (KiCad board + PCBWay Gerber/BOM/CPL package included); flashes WLED over the same USB-C port |
 | Runtime | ~5 h at full reading brightness, ~12 h at mood brightness with two 3500 mAh cells (half with one cell) |
 
 ## What is in this repository
@@ -20,8 +20,8 @@ ESP32, with a capacitive touch pad hidden under the white top plate.
 ```
 cad/tablelight.py          parametric CAD (Python: trimesh + manifold) - ALL dimensions live here
 cad/stl/                   ready-to-print STL files (6 parts)
-hardware/pcb/              custom controller PCB: SKiDL circuit, KiCad netlist, BOM, board outline (DXF),
-                           placement constraints, design notes
+hardware/pcb/              custom controller PCB: SKiDL circuit, KiCad 7 board (kicad/), PCBWay fab package
+                           (fab/: Gerbers, drill, BOM, pick-and-place), board generator, design notes
 firmware/wled/             WLED build override + settings for this lamp
 docs/BOM.md                complete bill of materials (printed parts, electronics, hardware, consumables)
 docs/PRINTING.md           print settings and orientation per part
@@ -62,7 +62,7 @@ See `hardware/pcb/README.md` for the design rationale and `hardware/pcb/SCHEMATI
 ## Build order (short version)
 
 1. Print the six parts (`docs/PRINTING.md`). Fit 12 x M3 heat-set inserts.
-2. Order / build the PCB (`hardware/pcb/`). Flash WLED (`docs/WLED_SETUP.md`).
+2. Order the PCB: upload `hardware/pcb/fab/tablelight-gerbers.zip` to PCBWay (`hardware/pcb/fab/README.md` has the form values). Flash WLED (`docs/WLED_SETUP.md`).
 3. Tape the LED ring into the head plate, stick the touch foil in its recess, run the wires down the stem (`docs/ASSEMBLY.md`).
 4. Screw the stem to the deck, plug the PCB in, screw the PCB to the deck bosses, fit 1 or 2 cells, screw the floor on.
 5. Push the diffuser up into the cone, screw the cone to the head, push the head onto the stem and fix it with two screws. Done.
@@ -74,6 +74,7 @@ pip install -r requirements.txt
 python3 cad/tablelight.py                    # STLs -> cad/stl, renders -> docs/images
 python3 hardware/pcb/tablelight_netlist.py   # tablelight.net, bom_pcb.csv, SCHEMATIC.md
 python3 hardware/pcb/board_outline.py        # outline.dxf, placement.svg, PLACEMENT.md
+python3 hardware/pcb/build_board.py          # KiCad board -> autoroute -> DRC -> fab/ (needs KiCad 7 + freerouting.jar)
 python3 docs/block_diagram.py                # block_diagram.svg/.png
 ```
 

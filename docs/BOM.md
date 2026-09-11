@@ -20,7 +20,7 @@ Total ~340 g of filament (~£8).
 
 | Item | Qty | Notes | Est. |
 |---|---|---|---|
-| TableLight controller PCB, Ø110 mm, 2 layer, 1.6 mm | 1 (min order 5) | `hardware/pcb/` - order from JLCPCB/PCBWay/Aisler with `outline.dxf`; optional SMD assembly | £5-£40 |
+| TableLight controller PCB, Ø110 mm, 2 layer, 1.6 mm | 1 (min order 5) | upload `hardware/pcb/fab/tablelight-gerbers.zip` to PCBWay (form values in `hardware/pcb/fab/README.md`); optional SMD assembly with the BOM/CPL in the same folder | £5-£40 |
 | PCB components (SMD + THT) | 1 set | full list in `hardware/pcb/bom_pcb.csv`; ~£12 as a one-off kit from LCSC/Mouser, key parts below | £12-£18 |
 | - ESP32-WROOM-32E-N4 | 1 | WLED-supported module with native capacitive touch | |
 | - TP4056 + DW01A + FS8205A | 1 each | charger + 1S protection | |

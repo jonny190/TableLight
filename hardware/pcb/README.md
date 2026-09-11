@@ -4,10 +4,19 @@ Round Ø110 mm, 2 layer, 1.6 mm FR4. Lives in the base, components facing down, 
 under the base deck. One board does everything: charging, protection, boost, ESP32 + WLED, USB flashing,
 LED power switching, touch input, battery sensing.
 
+**Ready to order:** `fab/tablelight-gerbers.zip` (+ `fab/tablelight-bom.csv`, `fab/tablelight-cpl.csv` for
+assembly). Ordering parameters and a pre-order checklist are in `fab/README.md`. The KiCad 7 board is
+`kicad/tablelight.kicad_pcb`.
+
+![top](../../docs/images/pcb_top.png)
+
 ![block diagram](../../docs/images/block_diagram.png)
 
 | File | What |
 |---|---|
+| `build_board.py` | **the board** (KiCad 7 pcbnew API): places every footprint from the table inside it, autoroutes with freerouting, pours GND, runs DRC, exports `fab/` |
+| `kicad/tablelight.kicad_pcb` | the finished board; `kicad/drc_report.txt` is the DRC of exactly this file |
+| `fab/` | PCBWay package: Gerbers + drill zip, assembly BOM, pick-and-place, ordering notes |
 | `tablelight_netlist.py` | **the circuit** (SKiDL). Run it to regenerate the three files below |
 | `tablelight.net` | KiCad netlist with footprints assigned. pcbnew: *File > Import Netlist* |
 | `SCHEMATIC.md` | every net with every pin, plus per-component pin tables |
@@ -18,21 +27,29 @@ LED power switching, touch input, battery sensing.
 
 ![placement](../../docs/images/pcb_placement.png)
 
-## Layout workflow
+## Regenerating the board
 
-1. New KiCad project, import `outline.dxf` onto Edge.Cuts (the round outline and the wire slot) and the
-   `Ref.Holes` / `Placement` / `Keepout` layers onto `User.Drawings`.
-2. *File > Import Netlist* -> `tablelight.net`. All 72 footprints appear with the ratsnest.
-3. Place per `PLACEMENT.md`: mounting holes H1-H4 at r = 50 mm on the 45 deg diagonals, J1 USB-C centred on
-   -Y with its face 1 mm past the edge, SW1 at 240 deg, D3/D4 at the edge near 300 deg, U1 with the antenna
-   at the +Y edge, BT1/BT2 either side of the centre slot.
-4. Route. Power nets (`BAT+`, `CELL-`, `GND`, `VSYS`, `+5V`, `VLED`) carry up to 2.5 A: 1.5 mm+ traces or
-   pours. GND pour both sides. Copper under U2 (TP4056) EP with a via array. Nothing under the module antenna.
-5. Height limits (from the enclosure): 22 mm anywhere on the component side, 9 mm inside the four red boss
-   zones, 3 mm of lead length on the solder side.
+```
+sudo apt install kicad            # KiCad 7 (pcbnew Python module + kicad-cli)
+curl -L -o hardware/pcb/tools/freerouting.jar \
+     https://github.com/freerouting/freerouting/releases/download/v1.9.0/freerouting-1.9.0.jar
+python3 hardware/pcb/build_board.py               # place -> route -> zones -> DRC -> fab/
+```
 
-If you prefer a schematic editor: the pin tables in `SCHEMATIC.md` are complete; redrawing it in KiCad's
-eeschema takes about an hour and the netlist import then verifies your drawing against this reference.
+`build_board.py` reads the circuit from `tablelight_netlist.py` and the mechanical constraints from
+`cad/tablelight.py`; component positions are the `PLACEMENT` table at the top of the script (KiCad
+coordinates, Y down, component side view). Change a position there and rerun: the router, pours, DRC and
+Gerbers are regenerated. Design rules baked in: 0.25 mm signal / 0.8 mm power tracks, 0.2 mm clearance,
+0.7/0.35 mm vias, 0.4 mm copper-to-edge, GND pour both layers with thermal reliefs.
+
+Keep-outs that the script enforces: no copper under the module antenna (both layers), no copper on the
+component side within 4 mm of the four mounting holes (screw heads), courtyards clear of the two
+Keystone 1042 holders (87.6 x 21.7 mm each).
+
+If you would rather lay it out by hand: import `tablelight.net` into an empty pcbnew, import `outline.dxf`
+onto Edge.Cuts, and follow `PLACEMENT.md`. Power nets (`BAT+`, `CELL-`, `GND`, `VSYS`, `+5V`, `VLED`) carry
+up to 2.5 A: 0.8 mm+ traces or pours. Height limits from the enclosure: 22 mm anywhere on the component
+side, 9 mm inside the four boss zones, 3 mm of lead length on the solder side.
 
 ## Design notes and calculations
 
@@ -92,7 +109,6 @@ the stem next to the LED wires: keep it away from the data wire if possible (twi
 
 ## Ordering
 
-Any 2-layer service. JLCPCB economic assembly can place every SMD part on the single component side; the
-THT parts (holders, USB-C is SMD, slide switch, JST headers, pin header) are a 20 minute hand solder.
-The board is Ø110, so it falls in the 100-150 mm price tier; a Ø100 variant fits a Ø108 base
-(`base_r_out=54`, `pcb_r=50`, `pcb_hole_r=45` in `cad/tablelight.py`, then regenerate).
+See `fab/README.md` for the PCBWay form values. Any 2-layer service works (JLCPCB, Aisler, OSH Park take
+the same zip). All SMD parts are on one side; the THT parts (JST headers, pin header, slide switch) and the
+SMD-mount 18650 holders are a 20 minute hand solder if you do not order assembly.

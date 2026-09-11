@@ -13,13 +13,13 @@ Generated from `cad/tablelight.py` parameters by `board_outline.py`.
 | H3 mounting hole | (-35.36, +35.36) | Ø3.2 mm; deck boss Ø7.5 mm lands on the SOLDER side around it |
 | H4 mounting hole | (+35.36, +35.36) | Ø3.2 mm; deck boss Ø7.5 mm lands on the SOLDER side around it |
 | J1 USB-C body | (+0.00, +52.33) | receptacle mating face at y_view = -56.0 (1 mm past the edge), pointing -Y |
-| SW1 slide switch | (-25.25, +43.73) | actuator radially outward at 240 deg (view); base slot 9.0x4.0 mm |
-| D3 CHRG LED | (+21.15, +47.50) | at board edge, light hole Ø2.5 in the base wall |
-| D4 STDBY LED | (+25.21, +45.48) | at board edge, light hole Ø2.5 in the base wall |
-| U1 ESP32 module | (+0.00, -38.05) | 18.0x25.5 mm, antenna toward +Y_view (board edge); antenna zone 6.0 mm: no copper |
+| SW1 slide switch | (+25.25, +43.73) | actuator radially outward at 300 deg (view); base slot 9.0x4.0 mm |
+| D3 CHRG LED | (-21.15, +47.50) | at board edge, light hole Ø2.5 in the base wall |
+| D4 STDBY LED | (-25.21, +45.48) | at board edge, light hole Ø2.5 in the base wall |
+| U1 ESP32 module | (+0.00, -38.95) | 18.0x25.5 mm, antenna toward +Y_view (board edge); antenna zone 6.0 mm: no copper |
 | Stem flange screw heads (solder side) | r = 14.5 mm at 45/135/225/315 deg | M3 heads sit in the 5 mm gap above the board: keep the solder side flat there (no tall THT leads) |
-| BT1 18650 holder | (+0.00, -14.40) | 77.7x20.8 mm, long axis along X, '+' toward +X_view |
-| BT2 18650 holder | (+0.00, +14.40) | 77.7x20.8 mm, long axis along X, '+' toward +X_view |
+| BT1 18650 holder | (+0.00, -14.85) | 87.6x21.7 mm, long axis along X, '+' (pad 1) toward -X_view |
+| BT2 18650 holder | (+0.00, +14.85) | 87.6x21.7 mm, long axis along X, '+' (pad 1) toward -X_view |
 | J2 LED ring | (-22.00, +29.00) | JST-PH; wires run along the holder edge to the centre slot |
 | J3 touch | (+22.00, +29.00) | JST-PH; wires run along the holder edge to the centre slot |
 | Boss keep-out 1 | (-48.97, -20.28) | Ø10 mm zone: parts taller than 9 mm not allowed here |

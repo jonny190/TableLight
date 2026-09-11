@@ -15,7 +15,7 @@ J2,1,LED RING,JST PH 2.0 mm 3 pin,B3B-PH-K-S,JST_PH_B3B-PH-K_1x03_P2.00mm_Vertic
 J3,1,TOUCH,JST PH 2.0 mm 2 pin,B2B-PH-K-S,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,"1 = pad, 2 = GND (optional shield)"
 J4,1,EXP,Pin header 1x6 2.54 mm (expansion),generic,PinHeader_1x06_P2.54mm_Vertical,"3V3 GND IO25 IO26 IO32 IO33 (IR receiver, extra buttons, sensors)"
 J5,1,BAT ALT,JST PH 2.0 mm 2 pin,B2B-PH-K-S,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,"alternative: wire-lead holder / pouch cell, parallel to BT1/BT2"
-L1,1,4.7uH 4A,Power inductor 6x6 mm shielded,,L_Bourns_SRN6045,"e.g. Bourns SRN6045TA-4R7Y or any 6x6 shielded, Isat >= 4 A"
+L1,1,4.7uH 4A,Power inductor 6x6 mm shielded,,L_Bourns_SRN6045TA,"e.g. Bourns SRN6045TA-4R7Y or any 6x6 shielded, Isat >= 4 A"
 Q1,1,FS8205A,"Dual N-MOSFET common drain, 20 V, 6 A (battery protection)",FS8205A,TSSOP-8_4.4x3mm_P0.65mm,
 Q2,1,AO4407A,P-MOSFET -30 V 12 A 12 mOhm (load sharing),AO4407A,SOIC-8_3.9x4.9mm_P1.27mm,load-share P-FET; off while USB present
 Q3,1,AO3401A,P-MOSFET -30 V 4 A (LED rail switch),AO3401A,SOT-23,LED rail switch
@@ -30,10 +30,10 @@ R9,1,75k,Resistor 0603 1%,,R_0603_1608Metric,FB divider: Vout = 0.6*(1+75/10) = 
 "R10, R12, R18, R19",4,10k,Resistor 0603 1%,,R_0603_1608Metric,Q3 gate pull-up
 R13,1,330R,Resistor 0603 1%,,R_0603_1608Metric,LED data series termination
 "R20, R21",2,12k,Resistor 0603 1%,,R_0603_1608Metric,
-SW1,1,POWER,Slide switch SPDT right-angle THT (power),C&K OS102011MA1QN1,SW_Slide_1P2T_CK_OS102011MA1Q,ON = SYS_EN high; only switches the LDO enable (tiny current)
+SW1,1,POWER,Slide switch SPDT right-angle THT (power),C&K OS102011MA1QN1,SW_Slide_SPDT_Angled_CK_OS102011MA1Q,ON = SYS_EN high; only switches the LDO enable (tiny current)
 SW2,1,RESET,Tactile switch 3x6x2.5 mm SMD,TL3342 / TS-1187A,SW_SPST_TL3342,
 SW3,1,BOOT,Tactile switch 3x6x2.5 mm SMD,TL3342 / TS-1187A,SW_SPST_TL3342,
-U1,1,ESP32-WROOM-32E-N4,"ESP32-WROOM-32E-N4 WiFi/BT module, 4 MB flash",ESP32-WROOM-32E-N4,ESP32-WROOM-32E,
+U1,1,ESP32-WROOM-32E-N4,"ESP32-WROOM-32E-N4 WiFi/BT module, 4 MB flash",ESP32-WROOM-32E-N4,ESP32-WROOM-32,
 U2,1,TP4056,"1 A linear Li-ion charger, ESOP-8",TP4056,SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,
 U3,1,DW01A,1S Li-ion protection IC,DW01A-G,SOT-23-6,
 U4,1,MT3608,"Boost converter 2-24 V in, 1.2 MHz, 4 A switch",MT3608,SOT-23-6,

@@ -52,7 +52,7 @@ sw_pos = polar(R - 4.5, sw_angle_v)
 led_pos = [polar(R - 3.0, lamp_angle_to_view(a)) for a in P["led_angles"]]
 esp_w, esp_h = 18.0, 25.5
 esp_ant_h = 6.0                    # antenna zone at the +Y end of the module: no copper on any layer
-holder_l, holder_w = 77.7, 20.8
+holder_l, holder_w = 87.6, 21.7      # Keystone 1042 footprint bounding box
 holder_gap = slot_h + 2.0               # holders straddle the wire slot with 1 mm margin each side
 holder_centers = [(0.0, holder_gap / 2 + holder_w / 2), (0.0, -(holder_gap / 2 + holder_w / 2))]
 esp_center = (0.0, holder_centers[0][1] + holder_w / 2 + 0.5 + esp_h / 2)
@@ -132,8 +132,8 @@ def write_placement_drawing(svg_path, png_path):
     for i, (hx, hy) in enumerate(holder_centers):
         ax.add_patch(Rectangle((hx - holder_l / 2, hy - holder_w / 2), holder_l, holder_w, color="#f1c232", alpha=0.45))
         ax.text(hx, hy, "BT%d  18650 holder (Keystone 1042)%s" % (i + 1, "" if i == 0 else "  - optional 2nd cell"), ha="center", va="center", fontsize=8)
-        ax.text(hx + holder_l / 2 - 3, hy, "+", ha="center", va="center", fontsize=12, weight="bold")
-        ax.text(hx - holder_l / 2 + 3, hy, "-", ha="center", va="center", fontsize=12, weight="bold")
+        ax.text(hx - holder_l / 2 + 3, hy, "+", ha="center", va="center", fontsize=12, weight="bold")
+        ax.text(hx + holder_l / 2 - 3, hy, "-", ha="center", va="center", fontsize=12, weight="bold")
     # switch, LEDs
     ax.add_patch(Circle(sw_pos, 2.2, color="#999"))
     ax.annotate("SW1 power slide switch\nactuator points outward", sw_pos, (-42, -60), fontsize=8, ha="center", arrowprops=dict(arrowstyle="-", lw=0.6))
@@ -152,7 +152,7 @@ def write_placement_drawing(svg_path, png_path):
                 bbox=dict(boxstyle="round,pad=0.3", fc="#f3f3f3", ec="#bbb", lw=0.6))
     ax.set_xlim(-66, 66); ax.set_ylim(-70, 64)
     ax.set_aspect("equal")
-    ax.set_title("TableLight PCB - Ø%.0f mm, viewed from the COMPONENT side (faces down in the lamp)\n"
+    ax.set_title("TableLight PCB placement constraints (the routed board is kicad/tablelight.kicad_pcb)\nØ%.0f mm, viewed from the COMPONENT side (faces down in the lamp)\n"
                  "max part height %.0f mm (%.0f mm inside red zones); solder side faces the deck, %.0f mm clearance" %
                  (2 * R, max_part_h, boss_zone_h, P["pcb_boss_h"]), fontsize=9)
     ax.set_xlabel("X (mm)  -  mirror of lamp X"); ax.set_ylabel("Y (mm)")
@@ -183,7 +183,7 @@ def write_placement_md(path):
     lines.append(f"| U1 ESP32 module | {k(esp_center)} | {esp_w}x{esp_h} mm, antenna toward +Y_view (board edge); antenna zone {esp_ant_h} mm: no copper |")
     lines.append(f"| Stem flange screw heads (solder side) | r = {P['flange_screw_r']} mm at 45/135/225/315 deg | M3 heads sit in the {P['pcb_boss_h']:.0f} mm gap above the board: keep the solder side flat there (no tall THT leads) |")
     for i, hc in enumerate(holder_centers, 1):
-        lines.append(f"| BT{i} 18650 holder | {k(hc)} | {holder_l}x{holder_w} mm, long axis along X, '+' toward +X_view |")
+        lines.append(f"| BT{i} 18650 holder | {k(hc)} | {holder_l}x{holder_w} mm, long axis along X, '+' (pad 1) toward -X_view |")
     for (jx, jy), lab in zip(j23_pos, ("J2 LED ring", "J3 touch")):
         lines.append(f"| {lab} | {k((jx, jy))} | JST-PH; wires run along the holder edge to the centre slot |")
     for i, b in enumerate(boss_keepouts, 1):
