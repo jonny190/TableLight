@@ -303,6 +303,67 @@ def setup_rules(board):
     nc.SetViaDrill(FromMM(VIA_DRILL))
 
 
+def _rot(vx, vy, deg):
+    a = math.radians(deg)
+    return (vx * math.cos(a) - vy * math.sin(a), vx * math.sin(a) + vy * math.cos(a))
+
+
+def add_track(board, net, x1, y1, x2, y2, width, layer=pcbnew.F_Cu):
+    t = pcbnew.PCB_TRACK(board)
+    t.SetStart(mm(x1, y1)); t.SetEnd(mm(x2, y2))
+    t.SetWidth(FromMM(width)); t.SetLayer(layer); t.SetNet(net)
+    board.Add(t)
+    return t
+
+
+def add_escape_stubs(board):
+    """Pre-routed narrow stubs out of fine-pitch pads whose nets demand wide tracks.
+    The autorouter cannot land a 0.8 mm track on a 0.6 mm SOT-23 pad (or a 0.4 mm track on a
+    0.3 mm USB-C data pad) without violating clearance to the neighbouring pads; it can attach
+    to the end of a stub. KiCad exports existing tracks to the DSN as fixed wiring."""
+    n = 0
+    for fp in board.GetFootprints():
+        name = fp.GetFPID().GetLibItemName().__str__() if hasattr(fp.GetFPID().GetLibItemName(), "__str__") else str(fp.GetFPID().GetLibItemName())
+        rot = fp.GetOrientationDegrees()
+        fx, fy = fp.GetPosition().x / 1e6, fp.GetPosition().y / 1e6
+        if name.startswith("SOT-23"):
+            for pad in fp.Pads():
+                if pad.GetNet() is None or pad.GetNetname() not in POWER_NETS:
+                    continue
+                px, py = pad.GetPosition().x / 1e6, pad.GetPosition().y / 1e6
+                # local x of the pad tells which side of the body it is on
+                lx, ly = _rot(px - fx, py - fy, -rot)
+                dx, dy = _rot(1.0 if lx > 0 else -1.0, 0.0, rot)
+                add_track(board, pad.GetNet(), px, py, px + 1.4 * dx, py + 1.4 * dy, 0.35)
+                n += 1
+        if fp.GetReference() == "J1":
+            for pad in fp.Pads():
+                if pad.GetNumber() in ("A6", "A7", "B6", "B7"):
+                    px, py = pad.GetPosition().x / 1e6, pad.GetPosition().y / 1e6
+                    dx, dy = _rot(0.0, -1.0, rot)          # away from the connector, toward the board centre
+                    add_track(board, pad.GetNet(), px, py, px + 1.2 * dx, py + 1.2 * dy, 0.25)
+                    n += 1
+    print(f"escape stubs: {n}")
+
+
+def dedupe_tracks(board):
+    """Drop exact duplicate track segments (the SES echoes the fixed pre-routed stubs)."""
+    seen, dup = set(), []
+    for t in board.GetTracks():
+        if t.GetClass() != "PCB_TRACK":
+            continue
+        a, b = t.GetStart(), t.GetEnd()
+        key = (t.GetLayer(), t.GetWidth(), t.GetNetCode(), min((a.x, a.y), (b.x, b.y)), max((a.x, a.y), (b.x, b.y)))
+        if key in seen:
+            dup.append(t)
+        else:
+            seen.add(key)
+    for t in dup:
+        board.Remove(t)
+    if dup:
+        print(f"removed {len(dup)} duplicate track segments")
+
+
 def build_placed_board():
     parts, _ = load_circuit()
     board = pcbnew.BOARD()
@@ -329,6 +390,7 @@ def build_placed_board():
         cx, cy = polar(P["pcb_hole_r"], 45 + 90 * i)
         pts = [(cx + 4.0 * math.cos(math.radians(t)), cy + 4.0 * math.sin(math.radians(t))) for t in range(0, 360, 15)]
         add_rule_area(board, pts, [pcbnew.F_Cu], f"screw_head_H{i+1}")
+    add_escape_stubs(board)
     # silkscreen
     add_text(board, "TableLight v1.0", -32.0, -26.8, size=1.0)
     add_text(board, "github.com/jonny190/TableLight", 0, 26.6, size=0.9)
@@ -364,6 +426,8 @@ def rewrite_dsn_classes(dsn_path):
     new_power = f'\n    (class power {" ".join(q(n) for n in power)}\n      (circuit{circuit})\n      (rule (width {TRACK_POWER*unit:g}) (clearance {clearance}))\n    )'
     new_vbus = f'\n    (class vbus {" ".join(q(n) for n in vbus)}\n      (circuit{circuit})\n      (rule (width {TRACK_VBUS*unit:g}) (clearance {clearance}))\n    )'
     txt = txt[:m.start()] + new_default + new_power + new_vbus + txt[m.end():]
+    # pre-routed escape stubs must survive: KiCad exports them as (type route); make them fixed
+    txt = re.sub(r'\((wire \(path [^)]*\)\(net [^)]*\)\(type )route\)', r'(\1fix)', txt)
     open(dsn_path, "w").write(txt)
     return keep, power
 
@@ -441,6 +505,7 @@ def import_ses(board, ses_path):
                 v.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu); v.SetNet(net)
                 board.Add(v); n_vias += 1
     print(f"SES import: {n_tracks} track segments, {n_vias} vias")
+    dedupe_tracks(board)
 
 
 def autoroute(board, workdir, passes=60, reuse=False):
