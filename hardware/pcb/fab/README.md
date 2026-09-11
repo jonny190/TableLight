@@ -45,9 +45,11 @@ assemble the SMD side, add `tablelight-bom.csv` and `tablelight-cpl.csv`.
 
 ## What was checked before export
 
-* KiCad DRC on the exported board (report in `../kicad/drc_report.txt`): zero clearance, edge,
-  hole, courtyard and unconnected errors. Remaining entries are silkscreen cosmetics and "footprint
-  not in library table" notices (the board is generated without a project library table).
+* KiCad DRC on the exported board (report in `../kicad/drc_report.txt`): **0 unconnected pads, 0
+  clearance / edge / hole / courtyard / keep-out errors**. The report still lists ~45 silkscreen items
+  (reference text touching a neighbour's pad or another label - the Gerbers are exported with silk
+  subtracted from the solder-mask openings, and PCBWay clips silk on pads anyway) and 72 "footprint
+  not in library table" notices, which only mean the board was generated without a project library table.
 * Net list against `../tablelight_netlist.py` (same object graph feeds both the netlist and the board).
 * Antenna keep-out: no copper on either layer under the ESP32 module antenna, module edge at the board edge.
 * Screw-head keep-outs: no copper on the component side within 4 mm of the four M3 mounting holes.
@@ -55,8 +57,9 @@ assemble the SMD side, add `tablelight-bom.csv` and `tablelight-cpl.csv`.
 
 ## What you should still look at before paying
 
-This board was placed by hand and routed by an autorouter (freerouting), then checked by DRC. That
-makes it manufacturable, not necessarily pretty. Ten minutes in KiCad are well spent on:
+This board was placed by hand (the table in `../build_board.py`) and routed by an autorouter
+(freerouting), then checked by DRC. That makes it manufacturable, not necessarily pretty. Ten minutes
+in KiCad are well spent on:
 
 1. Open `../kicad/tablelight.kicad_pcb`, press `B` to refill zones, run DRC once more.
 2. Look at the charger area (U2, D1, Q2): make sure the GND pour connects to the TP4056 exposed pad

@@ -6,7 +6,9 @@ LED power switching, touch input, battery sensing.
 
 **Ready to order:** `fab/tablelight-gerbers.zip` (+ `fab/tablelight-bom.csv`, `fab/tablelight-cpl.csv` for
 assembly). Ordering parameters and a pre-order checklist are in `fab/README.md`. The KiCad 7 board is
-`kicad/tablelight.kicad_pcb`.
+`kicad/tablelight.kicad_pcb`: hand-placed, autorouted (freerouting, 2 layers, 58 vias), GND pours both
+sides, KiCad DRC clean (0 unconnected, 0 clearance/edge/hole/courtyard errors; remaining report entries
+are silkscreen cosmetics).
 
 ![top](../../docs/images/pcb_top.png)
 

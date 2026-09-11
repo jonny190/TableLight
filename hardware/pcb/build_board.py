@@ -120,8 +120,8 @@ PLACEMENT = {
     "U2": (13.0, 42.0, 0), "R3": (8.0, 37.5, 90), "C2": (15.0, 47.5, 0),
     "D1": (12.5, 35.0, 0), "Q2": (12.5, 30.0, 0), "R8": (20.0, 29.0, 90),
     # --- boost + LED rail switch (right) -----------------------------------------------------
-    "U4": (46.0, 24.0, 0), "L1": (47.3, 16.0, 90), "D2": (41.0, 27.5, 0),
-    "R9": (34.0, 28.5, 90), "R10": (36.0, 28.5, 90),
+    "U4": (45.7, 24.0, 90), "L1": (47.3, 16.0, 90), "D2": (40.0, 28.0, 0),    # U4 turned: pad rows face +/-Y, stubs stay off the edge
+    "R9": (32.5, 28.5, 90), "R10": (34.5, 28.5, 90),
     "C4": (42.0, 31.5, 90), "C5": (17.5, 29.5, 90), "C6": (28.0, 33.0, 0), "C7": (28.0, 35.0, 0),   # C4 at the boost, C5 at the VSYS source
     "Q3": (23.5, 33.0, 0), "Q4": (19.0, 33.0, 0), "R11": (19.0, 36.5, 0), "R12": (23.5, 36.5, 0),
     "SW1": None,   # computed: pins centred at polar(SW_R, SW_ANG), actuator outward
@@ -316,6 +316,21 @@ def add_track(board, net, x1, y1, x2, y2, width, layer=pcbnew.F_Cu):
     return t
 
 
+def fp_rotation(fp):
+    """Rotation (deg, in board coordinates) that maps a footprint's local pad offsets to board offsets.
+    Derived from two pads so it is independent of KiCad's angle sign convention."""
+    pads = list(fp.Pads())
+    for i in range(len(pads)):
+        for j in range(i + 1, len(pads)):
+            a, b = pads[i], pads[j]
+            dl = (b.GetPos0().x - a.GetPos0().x, b.GetPos0().y - a.GetPos0().y)
+            if abs(dl[0]) + abs(dl[1]) < 1000:
+                continue
+            dg = (b.GetPosition().x - a.GetPosition().x, b.GetPosition().y - a.GetPosition().y)
+            return math.degrees(math.atan2(dg[1], dg[0]) - math.atan2(dl[1], dl[0]))
+    return 0.0
+
+
 def add_escape_stubs(board):
     """Pre-routed narrow stubs out of fine-pitch pads whose nets demand wide tracks.
     The autorouter cannot land a 0.8 mm track on a 0.6 mm SOT-23 pad (or a 0.4 mm track on a
@@ -324,15 +339,13 @@ def add_escape_stubs(board):
     n = 0
     for fp in board.GetFootprints():
         name = fp.GetFPID().GetLibItemName().__str__() if hasattr(fp.GetFPID().GetLibItemName(), "__str__") else str(fp.GetFPID().GetLibItemName())
-        rot = fp.GetOrientationDegrees()
-        fx, fy = fp.GetPosition().x / 1e6, fp.GetPosition().y / 1e6
+        rot = fp_rotation(fp)
         if name.startswith("SOT-23"):
             for pad in fp.Pads():
                 if pad.GetNet() is None or pad.GetNetname() not in POWER_NETS:
                     continue
                 px, py = pad.GetPosition().x / 1e6, pad.GetPosition().y / 1e6
-                # local x of the pad tells which side of the body it is on
-                lx, ly = _rot(px - fx, py - fy, -rot)
+                lx = pad.GetPos0().x / 1e6                 # local x tells which side of the body the pad is on
                 dx, dy = _rot(1.0 if lx > 0 else -1.0, 0.0, rot)
                 add_track(board, pad.GetNet(), px, py, px + 1.4 * dx, py + 1.4 * dy, 0.35)
                 n += 1
@@ -343,7 +356,40 @@ def add_escape_stubs(board):
                     dx, dy = _rot(0.0, -1.0, rot)          # away from the connector, toward the board centre
                     add_track(board, pad.GetNet(), px, py, px + 1.2 * dx, py + 1.2 * dy, 0.25)
                     n += 1
+        if fp.GetReference() == "SW1":
+            for pad in fp.Pads():
+                if pad.GetNumber() == "1":                   # VSYS pin, between the mounting pad and pin 2
+                    px, py = pad.GetPosition().x / 1e6, pad.GetPosition().y / 1e6
+                    dx, dy = _rot(0.0, -1.0, rot)          # away from the switch body (which sits at local +Y)
+                    add_track(board, pad.GetNet(), px, py, px + 2.0 * dx, py + 2.0 * dy, 0.5)
+                    n += 1
     print(f"escape stubs: {n}")
+    STUBS[:] = [t for t in board.GetTracks() if t.GetClass() == "PCB_TRACK"]
+
+
+STUBS = []
+
+
+def remove_unused_stubs(board):
+    """Drop pre-routed stubs whose far end the router did not use."""
+    tracks = [t for t in board.GetTracks()]
+    removed = 0
+    for st in list(STUBS):
+        far = st.GetEnd()
+        used = False
+        for t in tracks:
+            if t is st or t.GetNetCode() != st.GetNetCode():
+                continue
+            if t.GetClass() == "PCB_VIA":
+                if (t.GetPosition() - far).EuclideanNorm() < 1000:
+                    used = True; break
+            else:
+                if (t.GetStart() - far).EuclideanNorm() < 1000 or (t.GetEnd() - far).EuclideanNorm() < 1000:
+                    used = True; break
+        if not used:
+            board.Remove(st); removed += 1
+    if removed:
+        print(f"removed {removed} unused stubs")
 
 
 def dedupe_tracks(board):
@@ -506,6 +552,7 @@ def import_ses(board, ses_path):
                 board.Add(v); n_vias += 1
     print(f"SES import: {n_tracks} track segments, {n_vias} vias")
     dedupe_tracks(board)
+    remove_unused_stubs(board)
 
 
 def autoroute(board, workdir, passes=60, reuse=False):
@@ -534,12 +581,46 @@ def unrouted_count(board):
     return conn.GetUnconnectedCount(True) if hasattr(conn, "GetUnconnectedCount") else -1
 
 
+COSMETIC_DRC = {"lib_footprint_issues", "silk_over_copper", "silk_overlap", "silk_edge_clearance", "text_height"}
+
+
 def run_drc(board, report_path):
+    """Returns (ok, real_violations, unconnected, report_text, category_counts).
+    'real' excludes silkscreen cosmetics (the fab clips silk over pads) and the 'footprint not in
+    library table' notice that every generated board carries."""
+    import collections
     ok = pcbnew.WriteDRCReport(board, report_path, pcbnew.EDA_UNITS_MILLIMETRES, True)
     txt = open(report_path).read() if os.path.exists(report_path) else ""
-    m = re.search(r"\*\* Found (\d+) DRC violations \*\*", txt)
-    u = re.search(r"\*\* Found (\d+) unconnected pads \*\*", txt)
-    return ok, int(m.group(1)) if m else -1, int(u.group(1)) if u else -1, txt
+    counts = collections.Counter(re.findall(r"^\[(\w+)\]", txt, re.M))
+    unconn = counts.pop("unconnected_items", 0)
+    real = sum(v for k, v in counts.items() if k not in COSMETIC_DRC)
+    return ok, real, unconn, txt, dict(counts)
+
+
+def prune_dangling(board, report_path):
+    """Remove the exact track segments DRC reports as dangling (unused escape stubs, router remnants).
+    The report gives each segment's START point, its length and its layer, so match all three."""
+    pcbnew.WriteDRCReport(board, report_path, pcbnew.EDA_UNITS_MILLIMETRES, True)
+    txt = open(report_path).read()
+    wanted = []
+    for blk in re.split(r"\n(?=\[)", txt):
+        if blk.startswith("[track_dangling]"):
+            m = re.search(r"@\((-?[\d.]+) mm, (-?[\d.]+) mm\): Track \[[^\]]*\] on (\S+), length ([\d.]+) mm", blk)
+            if m:
+                wanted.append((FromMM(float(m.group(1))), FromMM(float(m.group(2))), m.group(3), float(m.group(4))))
+    victims = []
+    for t in list(board.Tracks()):
+        if t.GetClass() != "PCB_TRACK":
+            continue
+        lname = pcbnew.BOARD.GetStandardLayerName(t.GetLayer())
+        for (x, y, layer, length) in wanted:
+            if layer == lname and abs(t.GetStart().x - x) < 2000 and abs(t.GetStart().y - y) < 2000 and abs(t.GetLength() / 1e6 - length) < 0.002:
+                victims.append(t); break
+    for t in victims:
+        board.Remove(t)
+    if victims:
+        print(f"pruned {len(victims)} dangling track segments")
+    return len(victims)
 
 
 def export_fab(pcb_path, out_dir, parts):
@@ -585,9 +666,12 @@ def export_fab(pcb_path, out_dir, parts):
     with open(os.path.join(out_dir, "tablelight-bom.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["Item", "Designator", "Qty", "Manufacturer", "Mfg Part #", "Description / Value", "Package / Footprint", "Type", "Notes"])
-        for i, ((val, fp, mpn, desc), refs) in enumerate(sorted(groups.items(), key=lambda kv: kv[1][0]), 1):
+        def natkey(ref):
+            m = re.match(r"([A-Za-z]+)(\d+)", ref)
+            return (m.group(1), int(m.group(2))) if m else (ref, 0)
+        for i, ((val, fp, mpn, desc), refs) in enumerate(sorted(groups.items(), key=lambda kv: natkey(sorted(kv[1], key=natkey)[0])), 1):
             typ = "SMD" if fp.startswith(smd_fp) else "THT"
-            w.writerow([i, ",".join(sorted(refs)), len(refs), "", mpn, f"{val} - {desc}", fp.split(":")[1], typ, ""])
+            w.writerow([i, ",".join(sorted(refs, key=natkey)), len(refs), "", mpn, f"{val} - {desc}", fp.split(":")[1], typ, ""])
     return zpath
 
 
@@ -645,9 +729,11 @@ def main():
     add_gnd_zones(board, gnd)
     filler = pcbnew.ZONE_FILLER(board)
     filler.Fill(board.Zones())
+    if prune_dangling(board, os.path.join(KICAD_DIR, "drc_report.txt")):
+        filler.Fill(board.Zones())
     board.Save(PCB_PATH)
-    ok, nviol, nunconn, txt = run_drc(board, os.path.join(KICAD_DIR, "drc_report.txt"))
-    print(f"DRC: violations={nviol} unconnected={nunconn}")
+    ok, nviol, nunconn, txt, counts = run_drc(board, os.path.join(KICAD_DIR, "drc_report.txt"))
+    print(f"DRC: real violations={nviol} unconnected={nunconn} (all categories: {counts})")
     zpath = export_fab(PCB_PATH, FAB_DIR, parts)
     render_previews(PCB_PATH, KICAD_DIR)
     print("fab package ->", zpath)
